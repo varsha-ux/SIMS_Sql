@@ -279,5 +279,31 @@ INSERT INTO Suppliers (SupplierName, ContactNumber, Address) VALUES
 ('Urban Bakery Works', '1800778899', 'Pune, Maharashtra'),
 ('Sleepy Owl Roasters', '1800990000', 'Delhi, India');
 
+-- EMPLOYEE DATA --
+
+INSERT INTO Employees (StoreID, Name, Role, Email, Phone) VALUES 
+(1, 'Rahul Sharma', 'Store Manager', 'rahul@musafircafe.com', '9998887770'),
+(1, 'Priya Singh', 'Barista', 'priya@musafircafe.com', '9998887771'),
+(1, 'Amit Patel', 'Barista', 'amit@musafircafe.com', '9998887772'),
+(2, 'Neha Gupta', 'Store Manager', 'neha@musafircafe.com', '9998887773'),
+(2, 'Vikas Kumar', 'Barista', 'vikas@musafircafe.com', '9998887774'),
+(1, 'System Admin', 'Admin', 'admin@musafircafe.com', '9998887775');
+
+-- INVENTORY DATA --
+
+INSERT INTO Inventory (StoreID, IngredientName, Unit, CurrentStock, ReorderLevel) VALUES 
+(1, 'Espresso Beans', 'Kg', 15.5, 5.0),
+(1, 'Milk', 'Litre', 8.0, 15.0), -- NOTE: Stock is intentionally below Reorder Level
+(1, 'Sugar', 'Kg', 20.0, 10.0),
+(1, 'Chocolate Syrup', 'Litre', 5.0, 2.0),
+(1, 'Tea Leaves', 'Kg', 10.0, 3.0),
+(1, 'Paper Cups', 'Piece', 500.0, 200.0),
+(1, 'Samosa Base', 'Piece', 40.0, 20.0),
+(1, 'Croissant Dough', 'Piece', 30.0, 15.0),
+(1, 'Blueberry Muffin', 'Piece', 15.0, 10.0),
+(1, 'Ice', 'Kg', 30.0, 10.0);
+
+-- 
+
 SELECT * FROM Customers
 
