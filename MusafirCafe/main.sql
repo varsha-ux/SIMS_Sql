@@ -556,6 +556,7 @@ VALUES
 (2, 7, 4, '2026-08-13', 3.00, 'Samosa base burnt during prep');
 */
 
+
 select * from Customers
 select * from Employees
 select * from Inventory
