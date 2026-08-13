@@ -72,16 +72,6 @@ CREATE TABLE Orders (
     FOREIGN KEY (ProcessedByEmployeeID) REFERENCES Employees(EmployeeID)
 )
 
--- INGredient Table --
-CREATE TABLE RecipeIngredients (
-    RecipeID INT IDENTITY(1,1) PRIMARY KEY,
-    ItemID INT NOT NULL,
-    IngredientID INT NOT NULL,
-    QuantityRequiredPerUnit DECIMAL(10, 3) NOT NULL,
-    FOREIGN KEY (ItemID) REFERENCES MenuItems(ItemID),
-    FOREIGN KEY (IngredientID) REFERENCES Inventory(IngredientID)
-)
-
 -- INVENTORY TABLE --
 CREATE TABLE InventoryPurchases (
     PurchaseID INT IDENTITY(1,1) PRIMARY KEY,
@@ -303,7 +293,7 @@ INSERT INTO Inventory (StoreID, IngredientName, Unit, CurrentStock, ReorderLevel
 (1, 'Blueberry Muffin', 'Piece', 15.0, 10.0),
 (1, 'Ice', 'Kg', 30.0, 10.0);
 
--- 
+-- INSERT RecipeIngredients --
 
-SELECT * FROM Customers
+SELECT * FROM MenuItems
 
