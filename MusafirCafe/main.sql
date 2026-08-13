@@ -293,7 +293,70 @@ INSERT INTO Inventory (StoreID, IngredientName, Unit, CurrentStock, ReorderLevel
 (1, 'Blueberry Muffin', 'Piece', 15.0, 10.0),
 (1, 'Ice', 'Kg', 30.0, 10.0);
 
--- INSERT RecipeIngredients --
+-- INSERT Orders --
 
-SELECT * FROM MenuItems
+INSERT INTO Orders (StoreID, CustomerID, ProcessedByEmployeeID, OrderDateTime, TotalAmount, PaymentMode, Status) VALUES 
+(1, 1, 2, '2026-08-01 09:30:00', 300.00, 'UPI', 'Completed'),
+(1, 2, 2, '2026-08-02 10:15:00', 120.00, 'Cash', 'Completed'),
+(2, 3, 4, '2026-08-03 11:45:00', 450.00, 'Card', 'Completed'),
+(1, 4, 3, '2026-08-04 14:20:00', 650.00, 'UPI', 'Completed'), 
+(2, 5, 5, '2026-08-05 08:10:00', 180.00, 'Cash', 'Completed'),
+(1, 6, 2, '2026-08-06 16:30:00', 200.00, 'UPI', 'Completed'),
+(2, 7, 4, '2026-08-07 18:00:00', 750.00, 'Card', 'Completed'),
+(1, 8, 3, '2026-08-08 09:00:00', 150.00, 'Cash', 'Completed'),
+(2, 9, 5, '2026-08-09 13:20:00', 820.00, 'UPI', 'Completed'), 
+(1, 10, 2, '2026-08-10 15:45:00', 330.00, 'Card', 'Pending');
+
+-- INSERT Order Details --
+
+INSERT INTO OrderDetails (OrderID, ItemID, Quantity, PriceAtOrder) VALUES 
+-- Order 1 (Total: 300.00)
+(1, 2, 1, 180.00),  -- Cappuccino
+(1, 13, 1, 120.00), -- French Fries
+
+-- Order 2 (Total: 120.00)
+(2, 1, 1, 120.00),  -- Espresso
+
+-- Order 3 (Total: 450.00)
+(3, 8, 1, 250.00),  -- Frappe
+(3, 5, 1, 200.00),  -- Hot Chocolate
+
+-- Order 4 (Total: 650.00)
+(4, 8, 2, 250.00),  -- 2x Frappe (500.00)
+(4, 17, 1, 150.00), -- Blueberry Muffin
+
+-- Order 5 (Total: 180.00)
+(5, 11, 1, 180.00), -- Paneer Tikka Sandwich
+
+-- Order 6 (Total: 200.00)
+(6, 5, 1, 200.00),  -- Hot Chocolate
+
+-- Order 7 (Total: 750.00)
+(7, 8, 3, 250.00),  -- 3x Frappe (750.00)
+
+-- Order 8 (Total: 150.00)
+(8, 17, 1, 150.00), -- Blueberry Muffin
+
+-- Order 9 (Total: 820.00) - Contains Hot Bev + Bakery
+(9, 3, 1, 190.00),  -- Latte
+(9, 16, 1, 160.00), -- Butter Croissant
+(9, 8, 1, 250.00),  -- Frappe
+(9, 7, 1, 220.00),  -- Cold Coffee
+
+-- Order 10 (Total: 330.00) - Contains Hot Bev + Bakery
+(10, 2, 1, 180.00), -- Cappuccino
+(10, 17, 1, 150.00); -- Blueberry Muffin
+
+
+-- INSERT Inventory Purchases --
+INSERT INTO InventoryPurchases (StoreID, SupplierID, IngredientID, LoggedByEmployeeID, PurchaseDate, Quantity, UnitPrice) VALUES 
+-- Recent active purchases (August 2026)
+(1, 1, 1, 1, '2026-08-10', 10.00, 800.00), -- Tata Coffee supplying Espresso Beans
+(1, 2, 2, 1, '2026-08-12', 20.00, 60.00),  -- Amul Dairy supplying Milk
+(2, 3, 8, 4, '2026-08-11', 50.00, 40.00),  -- Urban Bakery supplying Croissant Dough
+
+-- Old purchase to satisfy the "inactive supplier" query (> 3 months ago)
+(1, 4, 1, 1, '2026-04-01', 5.00, 900.00);
+
+
 
