@@ -8,6 +8,7 @@ CREATE TABLE Stores (
     Address VARCHAR(MAX),
     ContactNumber VARCHAR(20)
 )
+
 -- MENU ITEMS (CATEGORY MANDATED)
 CREATE TABLE MenuItems (
     ItemID INT IDENTITY(1,1) PRIMARY KEY,
@@ -16,6 +17,17 @@ CREATE TABLE MenuItems (
     Price DECIMAL(10, 2) NOT NULL,
     PrepTimeMinutes INT NOT NULL
 )
+
+-- RecipeIngredients --
+CREATE TABLE RecipeIngredients (
+    RecipeID INT IDENTITY(1,1) PRIMARY KEY,
+    ItemID INT NOT NULL,
+    IngredientID INT NOT NULL,
+    QuantityRequiredPerUnit DECIMAL(10, 3) NOT NULL,
+    FOREIGN KEY (ItemID) REFERENCES MenuItems(ItemID),
+    FOREIGN KEY (IngredientID) REFERENCES Inventory(IngredientID)
+)
+
 -- CUSTOMER TABLE --
 CREATE TABLE Customers (
     CustomerID INT IDENTITY(1,1) PRIMARY KEY,
@@ -25,14 +37,13 @@ CREATE TABLE Customers (
     CustomerType VARCHAR(20) NOT NULL CHECK (CustomerType IN ('Walk-in', 'App'))
 )
 
+-- SUPPLIERS TABLE --
 CREATE TABLE Suppliers (
     SupplierID INT IDENTITY(1,1) PRIMARY KEY,
     SupplierName VARCHAR(100) NOT NULL,
     ContactNumber VARCHAR(20),
     Address VARCHAR(MAX)
 )
-
--- DEPENDENCY TABLES --
 
 -- EMPLOYEE TABLE --
 CREATE TABLE Employees (
@@ -45,6 +56,7 @@ CREATE TABLE Employees (
     FOREIGN KEY (StoreID) REFERENCES Stores(StoreID)
 )
 
+-- INVENTORY TABLE --
 CREATE TABLE Inventory (
     IngredientID INT IDENTITY(1,1) PRIMARY KEY,
     StoreID INT NOT NULL,
@@ -54,8 +66,6 @@ CREATE TABLE Inventory (
     ReorderLevel DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (StoreID) REFERENCES Stores(StoreID)
 )
-
--- SECOND ORDER DEPENDENCY TABLES --
 
 -- ORDER TABLE --
 CREATE TABLE Orders (
@@ -101,8 +111,6 @@ CREATE TABLE Wastage (
     FOREIGN KEY (IngredientID) REFERENCES Inventory(IngredientID),
     FOREIGN KEY (LoggedByEmployeeID) REFERENCES Employees(EmployeeID)
 )
-
--- THIRD ORDER DEPENDENCIES TABLES --
 
 -- ORDER DETAILS TABLE --
 CREATE TABLE OrderDetails (
@@ -359,4 +367,29 @@ INSERT INTO InventoryPurchases (StoreID, SupplierID, IngredientID, LoggedByEmplo
 (1, 4, 1, 1, '2026-04-01', 5.00, 900.00);
 
 
+-- INSERT into RecipeIngredients
+INSERT INTO RecipeIngredients (ItemID, IngredientID, QuantityRequiredPerUnit) VALUES 
+-- Recipe for Cappuccino (ItemID 2)
+-- Uses Espresso Beans (1), Milk (2), and Paper Cup (6)
+(2, 1, 0.015), 
+(2, 2, 0.200), 
+(2, 6, 1.000),
 
+-- Recipe for Cold Coffee (ItemID 7)
+-- Uses Espresso Beans (1), Milk (2), Ice (10), and Paper Cup (6)
+(7, 1, 0.020), 
+(7, 2, 0.250), 
+(7, 10, 0.100), 
+(7, 6, 1.000),
+
+-- Recipe for Veg Samosa (ItemID 12)
+-- Uses Samosa Base (7)
+(12, 7, 1.000),
+
+-- Recipe for Butter Croissant (ItemID 16)
+-- Uses Croissant Dough (8)
+(16, 8, 1.000),
+
+-- Recipe for Blueberry Muffin (ItemID 17)
+-- Uses Blueberry Muffin Base (9)
+(17, 9, 1.000)
