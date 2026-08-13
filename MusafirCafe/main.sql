@@ -275,7 +275,7 @@ INSERT INTO Suppliers (SupplierName, ContactNumber, Address) VALUES
 ('Tata Coffee Beans', '1800112233', 'Bangalore, India'),
 ('Amul Dairy', '1800445566', 'Anand, Gujarat'), 
 ('Urban Bakery Works', '1800778899', 'Pune, Maharashtra'),
-('Sleepy Owl Roasters', '1800990000', 'Delhi, India');
+('Sleepy Owl Roasters', '1800990000', 'Delhi, India')
 
 -- EMPLOYEE DATA --
 
@@ -364,7 +364,7 @@ INSERT INTO InventoryPurchases (StoreID, SupplierID, IngredientID, LoggedByEmplo
 (2, 3, 8, 4, '2026-08-11', 50.00, 40.00),  -- Urban Bakery supplying Croissant Dough
 
 -- Old purchase to satisfy the "inactive supplier" query (> 3 months ago)
-(1, 4, 1, 1, '2026-04-01', 5.00, 900.00);
+(1, 4, 1, 1, '2026-04-01', 5.00, 900.00)
 
 
 -- INSERT into RecipeIngredients
@@ -393,3 +393,4 @@ INSERT INTO RecipeIngredients (ItemID, IngredientID, QuantityRequiredPerUnit) VA
 -- Recipe for Blueberry Muffin (ItemID 17)
 -- Uses Blueberry Muffin Base (9)
 (17, 9, 1.000)
+
