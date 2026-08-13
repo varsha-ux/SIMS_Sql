@@ -18,6 +18,17 @@ CREATE TABLE MenuItems (
     PrepTimeMinutes INT NOT NULL
 )
 
+-- INVENTORY TABLE --
+CREATE TABLE Inventory (
+    IngredientID INT IDENTITY(1,1) PRIMARY KEY,
+    StoreID INT NOT NULL,
+    IngredientName VARCHAR(100) NOT NULL,
+    Unit VARCHAR(10) NOT NULL CHECK (Unit IN ('Kg', 'Litre', 'Piece', 'Pack')),
+    CurrentStock DECIMAL(10, 2) NOT NULL,
+    ReorderLevel DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (StoreID) REFERENCES Stores(StoreID)
+)
+
 -- RecipeIngredients --
 CREATE TABLE RecipeIngredients (
     RecipeID INT IDENTITY(1,1) PRIMARY KEY,
@@ -53,17 +64,6 @@ CREATE TABLE Employees (
     Role VARCHAR(20) NOT NULL CHECK (Role IN ('Barista', 'Store Manager', 'Admin')),
     Email VARCHAR(100),
     Phone VARCHAR(20),
-    FOREIGN KEY (StoreID) REFERENCES Stores(StoreID)
-)
-
--- INVENTORY TABLE --
-CREATE TABLE Inventory (
-    IngredientID INT IDENTITY(1,1) PRIMARY KEY,
-    StoreID INT NOT NULL,
-    IngredientName VARCHAR(100) NOT NULL,
-    Unit VARCHAR(10) NOT NULL CHECK (Unit IN ('Kg', 'Litre', 'Piece', 'Pack')),
-    CurrentStock DECIMAL(10, 2) NOT NULL,
-    ReorderLevel DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (StoreID) REFERENCES Stores(StoreID)
 )
 
@@ -392,5 +392,3 @@ INSERT INTO RecipeIngredients (ItemID, IngredientID, QuantityRequiredPerUnit) VA
 -- Recipe for Blueberry Muffin (ItemID 17)
 -- Uses Blueberry Muffin Base (9)
 (17, 9, 1.000)
-
-drop DATABASE MusafirCafe
