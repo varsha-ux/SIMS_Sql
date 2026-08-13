@@ -55,3 +55,75 @@ CREATE TABLE Inventory (
     FOREIGN KEY (StoreID) REFERENCES Stores(StoreID)
 )
 
+-- SECOND ORDER DEPENDENCY TABLES --
+
+-- ORDER TABLE --
+CREATE TABLE Orders (
+    OrderID INT IDENTITY(1,1) PRIMARY KEY,
+    StoreID INT NOT NULL,
+    CustomerID INT,
+    ProcessedByEmployeeID INT NOT NULL,
+    OrderDateTime DATETIME DEFAULT GETDATE(),
+    TotalAmount DECIMAL(10, 2) NOT NULL,
+    PaymentMode VARCHAR(10) NOT NULL CHECK (PaymentMode IN ('Cash', 'Card', 'UPI')),
+    Status VARCHAR(20) NOT NULL CHECK (Status IN ('Pending', 'Completed', 'Cancelled')),
+    FOREIGN KEY (StoreID) REFERENCES Stores(StoreID),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    FOREIGN KEY (ProcessedByEmployeeID) REFERENCES Employees(EmployeeID)
+)
+
+-- INGredient Table --
+CREATE TABLE RecipeIngredients (
+    RecipeID INT IDENTITY(1,1) PRIMARY KEY,
+    ItemID INT NOT NULL,
+    IngredientID INT NOT NULL,
+    QuantityRequiredPerUnit DECIMAL(10, 3) NOT NULL,
+    FOREIGN KEY (ItemID) REFERENCES MenuItems(ItemID),
+    FOREIGN KEY (IngredientID) REFERENCES Inventory(IngredientID)
+)
+
+-- INVENTORY TABLE --
+CREATE TABLE InventoryPurchases (
+    PurchaseID INT IDENTITY(1,1) PRIMARY KEY,
+    StoreID INT NOT NULL,
+    SupplierID INT NOT NULL,
+    IngredientID INT NOT NULL,
+    LoggedByEmployeeID INT NOT NULL,
+    PurchaseDate DATE NOT NULL,
+    Quantity DECIMAL(10, 2) NOT NULL,
+    UnitPrice DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (StoreID) REFERENCES Stores(StoreID),
+    FOREIGN KEY (SupplierID) REFERENCES Suppliers(SupplierID),
+    FOREIGN KEY (IngredientID) REFERENCES Inventory(IngredientID),
+    FOREIGN KEY (LoggedByEmployeeID) REFERENCES Employees(EmployeeID)
+)
+
+-- WASTAGE TABLE --
+CREATE TABLE Wastage (
+    WastageID INT IDENTITY(1,1) PRIMARY KEY,
+    StoreID INT NOT NULL,
+    IngredientID INT NOT NULL,
+    LoggedByEmployeeID INT NOT NULL,
+    Date DATE NOT NULL,
+    QuantityLost DECIMAL(10, 2) NOT NULL,
+    Reason VARCHAR(255),
+    FOREIGN KEY (StoreID) REFERENCES Stores(StoreID),
+    FOREIGN KEY (IngredientID) REFERENCES Inventory(IngredientID),
+    FOREIGN KEY (LoggedByEmployeeID) REFERENCES Employees(EmployeeID)
+)
+
+-- THIRD ORDER DEPENDENCIES TABLES --
+
+-- ORDER DETAILS TABLE --
+CREATE TABLE OrderDetails (
+    OrderDetailID INT IDENTITY(1,1) PRIMARY KEY,
+    OrderID INT NOT NULL,
+    ItemID INT NOT NULL,
+    Quantity INT NOT NULL,
+    PriceAtOrder DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
+    FOREIGN KEY (ItemID) REFERENCES MenuItems(ItemID)
+)
+
+-- LIST ALL TABLES --
+
