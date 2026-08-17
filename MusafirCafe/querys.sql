@@ -117,12 +117,39 @@ WHERE
 
 /* Find menu items with the highest profit margin (Price – Ingredient Cost) */
 
-SELECT m.ItemID,m.ItemName,m.Price AS SellingPrice,SUM(ri.QuantityRequiredPerUnit * i.UnitCost) AS TotalIngredientCost,(m.Price - SUM(ri.QuantityRequiredPerUnit * i.UnitCost)) AS ProfitMargin
+SELECT  m.ItemID,m.ItemName,m.Price AS SellingPrice,
+SUM(ri.QuantityRequiredPerUnit * i.UnitCost) AS TotalIngredientCost,
+(m.Price - SUM(ri.QuantityRequiredPerUnit * i.UnitCost)) AS ProfitMargin
 FROM MenuItems m INNER JOIN RecipeIngredients ri ON m.ItemID = ri.ItemID
 INNER JOIN Inventory i ON ri.IngredientID = i.IngredientID
-GROUP BY m.ItemID, m.ItemName, m.Price
+GROUP BY  m.ItemID,  m.ItemName, m.Price
 ORDER BY ProfitMargin DESC;
+/*
+UPDATE Inventory SET UnitCost = 1200.00 WHERE IngredientID = 1; 
+UPDATE Inventory SET UnitCost = 65.00 WHERE IngredientID = 2;   
+UPDATE Inventory SET UnitCost = 45.00 WHERE IngredientID = 3;   
+UPDATE Inventory SET UnitCost = 450.00 WHERE IngredientID = 4;  
+UPDATE Inventory SET UnitCost = 400.00 WHERE IngredientID = 5;  
+UPDATE Inventory SET UnitCost = 2.50 WHERE IngredientID = 6;    
+UPDATE Inventory SET UnitCost = 12.00 WHERE IngredientID = 7;   
+UPDATE Inventory SET UnitCost = 45.00 WHERE IngredientID = 8;   
+UPDATE Inventory SET UnitCost = 55.00 WHERE IngredientID = 9;   
+UPDATE Inventory SET UnitCost = 20.00 WHERE IngredientID = 10; */
 
+SELECT * FROM Inventory
 /* List suppliers who haven't supplied anything in the last 3 months. */
+
+SELECT 
+    s.SupplierID,
+    s.SupplierName
+FROM 
+    Suppliers s
+WHERE 
+    NOT EXISTS (
+        SELECT 1 
+        FROM InventoryPurchases ip 
+        WHERE ip.SupplierID = s.SupplierID 
+        AND ip.PurchaseDate >= DATEADD(month, -3, GETDATE())
+    );
 
 /* Generate a daily stock usage report for the outlet. */
