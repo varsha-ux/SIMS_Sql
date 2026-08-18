@@ -135,15 +135,12 @@ UPDATE Inventory SET UnitCost = 12.00 WHERE IngredientID = 7;
 UPDATE Inventory SET UnitCost = 45.00 WHERE IngredientID = 8;   
 UPDATE Inventory SET UnitCost = 55.00 WHERE IngredientID = 9;   
 UPDATE Inventory SET UnitCost = 20.00 WHERE IngredientID = 10; */
-
 SELECT * FROM Inventory
+
 /* List suppliers who haven't supplied anything in the last 3 months. */
 
-SELECT 
-    s.SupplierID,
-    s.SupplierName
-FROM 
-    Suppliers s
+SELECT s.SupplierID, s.SupplierName
+FROM Suppliers s
 WHERE 
     NOT EXISTS (
         SELECT 1 
