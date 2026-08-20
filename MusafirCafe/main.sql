@@ -335,7 +335,6 @@ INSERT INTO Orders (StoreID, CustomerID, ProcessedByEmployeeID, OrderDateTime, T
 --(1, 81, 2, '2026-08-09 10:00:00', 180.00, 'Cash', 'Completed'), (2, 95, 4, '2026-08-09 11:20:00', 180.00, 'UPI', 'Completed'),
 --(1, 22, 3, '2026-08-10 08:30:00', 180.00, 'Card', 'Completed'), (2, 34, 5, '2026-08-10 09:15:00', 180.00, 'UPI', 'Completed'),
 
----- Combo 2 (250.00)
 --(1, 47, 2, '2026-08-01 12:00:00', 250.00, 'UPI', 'Completed'), (2, 52, 4, '2026-08-01 12:45:00', 250.00, 'Cash', 'Completed'),
 --(1, 68, 3, '2026-08-01 14:00:00', 250.00, 'Card', 'Completed'), (2, 79, 5, '2026-08-01 16:20:00', 250.00, 'UPI', 'Completed'),
 --(1, 85, 2, '2026-08-02 12:00:00', 250.00, 'Cash', 'Completed'), (2, 97, 4, '2026-08-02 12:45:00', 250.00, 'UPI', 'Completed'),
@@ -378,7 +377,6 @@ INSERT INTO Orders (StoreID, CustomerID, ProcessedByEmployeeID, OrderDateTime, T
 --(1, 88, 2, '2026-08-10 17:00:00', 330.00, 'Cash', 'Completed'), (2, 94, 4, '2026-08-10 17:45:00', 330.00, 'UPI', 'Completed'),
 --(1, 15, 3, '2026-08-10 18:30:00', 330.00, 'Card', 'Completed'), (2, 21, 5, '2026-08-10 19:15:00', 330.00, 'UPI', 'Completed'),
 
----- Combo 4 (150.00)
 --(1, 32, 2, '2026-08-01 20:00:00', 150.00, 'UPI', 'Completed'), (2, 45, 4, '2026-08-01 20:45:00', 150.00, 'Cash', 'Completed'),
 --(1, 58, 3, '2026-08-01 21:30:00', 150.00, 'Card', 'Completed'), (2, 63, 5, '2026-08-01 22:15:00', 150.00, 'UPI', 'Completed'),
 --(1, 71, 2, '2026-08-02 20:00:00', 150.00, 'Cash', 'Completed'), (2, 87, 4, '2026-08-02 20:45:00', 150.00, 'UPI', 'Completed'),
@@ -426,44 +424,38 @@ INSERT INTO Orders (StoreID, CustomerID, ProcessedByEmployeeID, OrderDateTime, T
 -- INSERT Order Details --
 
 INSERT INTO OrderDetails (OrderID, ItemID, Quantity, PriceAtOrder) VALUES 
-(1, 2, 1, 180.00),  -- Cappuccino
-(1, 13, 1, 120.00), -- French Fries
-
-(2, 1, 1, 120.00),  -- Espresso
-
-(3, 8, 1, 250.00),  -- Frappe
-(3, 5, 1, 200.00),  -- Hot Chocolate
-
-(4, 8, 2, 250.00),  -- 2x Frappe (500.00)
-(4, 17, 1, 150.00), -- Blueberry Muffin
-
-(5, 11, 1, 180.00), -- Paneer Tikka Sandwich
-
-(6, 5, 1, 200.00),  -- Hot Chocolate
-
-(7, 8, 3, 250.00),  -- 3x Frappe (750.00)
-
-(8, 17, 1, 150.00), -- Blueberry Muffin
-
-(9, 3, 1, 190.00),  -- Latte
-(9, 16, 1, 160.00), -- Butter Croissant
-(9, 8, 1, 250.00),  -- Frappe
-(9, 7, 1, 220.00),  -- Cold Coffee
-
-(10, 2, 1, 180.00), -- Cappuccino
-(10, 17, 1, 150.00), -- Blueberry Muffin
-(11, 2, 1, 180.00), (12, 2, 1, 180.00), (13, 2, 1, 180.00), 
+(1, 2, 1, 180.00),  
+(1, 13, 1, 120.00), 
+(2, 1, 1, 120.00),  
+(3, 8, 1, 250.00),  
+(3, 5, 1, 200.00), 
+(4, 8, 2, 250.00),  
+(4, 17, 1, 150.00), 
+(5, 11, 1, 180.00), 
+(6, 5, 1, 200.00),  
+(7, 8, 3, 250.00), 
+(8, 17, 1, 150.00), 
+(9, 3, 1, 190.00),  
+(9, 16, 1, 160.00), 
+(9, 8, 1, 250.00),  
+(9, 7, 1, 220.00),  
+(10, 2, 1, 180.00), 
+(10, 17, 1, 150.00), 
+(11, 2, 1, 180.00), 
+(12, 2, 1, 180.00), (13, 2, 1, 180.00), 
 (14, 2, 1, 180.00), (15, 2, 1, 180.00), 
-(16, 2, 1, 180.00), (17, 2, 1, 180.00), (18, 2, 1, 180.00), 
-(19, 2, 1, 180.00), (20, 2, 1, 180.00), 
-(21, 2, 1, 180.00), (22, 2, 1, 180.00), (23, 2, 1, 180.00), 
+(16, 2, 1, 180.00), (17, 2, 1, 180.00), 
+(18, 2, 1, 180.00), (19, 2, 1, 180.00), 
+(20, 2, 1, 180.00), (21, 2, 1, 180.00), 
+(22, 2, 1, 180.00), (23, 2, 1, 180.00), 
 (24, 2, 1, 180.00), (25, 2, 1, 180.00), 
-(26, 2, 1, 180.00), (27, 2, 1, 180.00), (28, 2, 1, 180.00), 
-(29, 2, 1, 180.00), (30, 2, 1, 180.00), 
-(31, 2, 1, 180.00), (32, 2, 1, 180.00), (33, 2, 1, 180.00), 
+(26, 2, 1, 180.00), (27, 2, 1, 180.00), 
+(28, 2, 1, 180.00), (29, 2, 1, 180.00), 
+(30, 2, 1, 180.00), (31, 2, 1, 180.00), 
+(32, 2, 1, 180.00), (33, 2, 1, 180.00), 
 (34, 2, 1, 180.00), (35, 2, 1, 180.00), 
-(36, 2, 1, 180.00), (37, 2, 1, 180.00), (38, 2, 1, 180.00), 
-(39, 2, 1, 180.00), (40, 2, 1, 180.00),
+(36, 2, 1, 180.00), (37, 2, 1, 180.00), 
+(38, 2, 1, 180.00), (39, 2, 1, 180.00), (40, 2, 1, 180.00),
 (41, 8, 1, 250.00), (42, 8, 1, 250.00), (43, 8, 1, 250.00), (44, 8, 1, 250.00), (45, 8, 1, 250.00), 
 (46, 8, 1, 250.00), (47, 8, 1, 250.00), (48, 8, 1, 250.00), (49, 8, 1, 250.00), (50, 8, 1, 250.00), 
 (51, 8, 1, 250.00), (52, 8, 1, 250.00), (53, 8, 1, 250.00), (54, 8, 1, 250.00), (55, 8, 1, 250.00), 
@@ -526,13 +518,12 @@ INSERT INTO InventoryPurchases (StoreID, SupplierID, IngredientID, LoggedByEmplo
 
 -- INSERT into RecipeIngredients
 INSERT INTO RecipeIngredients (ItemID, IngredientID, QuantityRequiredPerUnit) VALUES 
--- Recipe for Cappuccino (ItemID 2)
--- Uses Espresso Beans (1), Milk (2), and Paper Cup (6)
+
 (2, 1, 0.015), 
 (2, 2, 0.200), 
 (2, 6, 1.000),
 
--- Recipe for Cold Coffee (ItemID 7)
+-- Recipe for Cold Coffe
 -- Uses Espresso Beans (1), Milk (2), Ice (10), and Paper Cup (6)
 (7, 1, 0.020), 
 (7, 2, 0.250), 
@@ -545,17 +536,35 @@ INSERT INTO RecipeIngredients (ItemID, IngredientID, QuantityRequiredPerUnit) VA
 -- INSERT WASTAGE TABLE -- 
 INSERT INTO Wastage (StoreID, IngredientID, LoggedByEmployeeID, Date, QuantityLost, Reason) 
 VALUES 
--- Store 1 
 (1, 2, 2, '2026-08-10', 1.50, 'Milk spilled during morning rush'),
 (1, 1, 3, '2026-08-12', 0.25, 'Espresso beans dropped on the floor'),
 (1, 6, 2, '2026-08-13', 5.00, 'Paper cups crushed by accident in storage'),
 
--- Store 2 
 (2, 8, 4, '2026-08-11', 2.00, 'Croissant dough over-proofed and ruined'),
 (2, 2, 5, '2026-08-13', 2.00, 'Milk expired due to fridge cooling issue'),
-(2, 7, 4, '2026-08-13', 3.00, 'Samosa base burnt during prep');
-*/
+(2, 7, 4, '2026-08-13', 3.00, 'Samosa base burnt during prep'),
 
+(1, 2, 2, '2026-06-05', 2.50, 'Milk spoiled overnight due to power cut'),
+(2, 8, 4, '2026-06-12', 4.00, 'Croissant dough dropped on the floor'),
+(1, 6, 3, '2026-06-20', 10.00, 'Paper cups water damaged near sink'),
+(2, 3, 5, '2026-06-25', 1.50, 'Sugar bag tore during restocking'),
+
+(2, 1, 5, '2026-07-03', 0.50, 'Espresso beans spilled from grinder'),
+(1, 9, 2, '2026-07-15', 5.00, 'Blueberry muffins burnt in oven'),
+(1, 4, 3, '2026-07-22', 0.25, 'Chocolate syrup bottle cracked'),
+(2, 2, 4, '2026-07-28', 1.00, 'Milk expired'),
+(1, 10, 3, '2026-07-30', 5.00, 'Ice melted due to freezer issue'),
+
+(2, 4, 5, '2026-08-02', 0.25, 'Chocolate syrup pump malfunctioned'),
+(1, 2, 2, '2026-08-10', 1.50, 'Milk spilled during morning rush'),
+(2, 8, 4, '2026-08-11', 2.00, 'Croissant dough over-proofed and ruined'),
+(1, 1, 3, '2026-08-12', 0.25, 'Espresso beans dropped on the floor'),
+(2, 2, 5, '2026-08-13', 2.00, 'Milk expired due to fridge cooling issue'),
+(1, 6, 2, '2026-08-13', 5.00, 'Paper cups crushed by accident in storage'),
+(2, 7, 4, '2026-08-13', 3.00, 'Samosa base burnt during prep'),
+(1, 7, 2, '2026-08-18', 2.00, 'Samosa bases dried out on counter');
+
+*/
 
 select * from Customers
 select * from Employees
